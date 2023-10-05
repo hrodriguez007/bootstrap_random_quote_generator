@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Random Quote Generator for BTS</title>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script>/*Will be using javascript*/
+            const QUOTEBANK = [
+                {
+                    quote: "I want my music to become that light for those in the dark. I want them to heal from it and find the courage to step forward again.",
+                    author: "SUGA"
+                }, {
+                    quote: "I have a big heart full of love, so please take it all.",
+                    author: "V"
+                }, {
+                    quote: "To the world, you may be one person. But to one person, you may be the world.",
+                    author: "Jungkook"
+                },
+                {
+                    quote: "Even when the rain stops, the clouds go away, I stand here, just the same.",
+                    author: "J-Hope"
+                }, {
+                    quote: "I hope you will never give up. Remember there is a person here in Korea, in the city of Seoul, who understands you.",
+                    author: "Jimin"
+                }, {
+                    quote: "When something is delicious. It's zero calories..",
+                    author: "Jin"
+                },
+                {
+                    quote: "I have come to love myself for who I am, for who I was, and for who I hope to become.",
+                    author: "RM"
+                }, {
+                    quote: "We were too young and immature to give up, you idiot.",
+                    author: "SUGA"
+                }, {
+                    quote: "Don't be trapped in someone else's dream.",
+                    author: "V"
+                },
+                {
+                    quote: "Why do you keep trying to hide under your mask? Even all the scars from your mistakes make up your constellation.",
+                    author: "BTS"
+                }, {
+                    quote: "You're too young to let the world break you.",
+                    author: "V"
+                }, {
+                    quote: "Look up. And we are all looking up at the same sky.",
+                    author: "RM"
+                },
+                {
+                    quote: "Be what you want to be, not what others want to see.",
+                    author: "Jimin"
+                }, {
+                    quote: "If you want to love others, I think you should love yourself first.",
+                    author: "RM"
+                },
+                {
+                    quote: "Remember: You are the leader of your own life and chant it over and over again. 'I can do it. You got it. I can do it well. I can do it better than anybody",
+                    author: "J-Hope"
+                }, {
+                    quote: "Know that the pain will pass. And when it does you will be stronger.",
+                    author: "Jimin"
+                }, {
+                    quote: "Those who keep trying without giving up are the ones who succeed.",
+                    author: "Jin"
+                },
+                {
+                    quote: "If we helped your dream and your life a bit by our existence, our music, our performance, our pictures or videos, even if it's not big, if we could reduce your pain from 100 to 99, 98 or 97, that makes our existence worthy.",
+                    author: "RM"
+                }, {
+                    quote: "No one can dodge the first arrow of trouble, of course, but when that second arrow flies at you, you've chosen to just stand there and get hit, rather than learn from the first time.",
+                    author: "SUGA"
+                },
+                {
+                    quote: "Trust is like a paper. When it crumbles, it will never be perfect again.",
+                    author: "V"
+                }, {
+                    quote: "Those who want to look more youthful should live life with a young heart.",
+                    author: "Jin"
+                },
+                {
+                    quote: "Trying to comfort myself. I tell myself the world can't be perfect",
+                    author: "J-Hope"
+                }, {
+                    quote: "There is beauty in everything, just that not everyone sees it.",
+                    author: "Jimin"
+                }, {
+                    quote: "Nothing's carved in stone.",
+                    author: "Jin"
+                },
+                {
+                    quote: "I urge you to listen to your heart. Things may feel a little difficult right now, but somewhere out there, luck and opportunity is waiting for you. I believe that.",
+                    author: "V"
+                }, {
+                    quote: "If you think you're going to crash, step on the pedal harder.",
+                    author: "SUGA"
+                },
+                {
+                    quote: "I think that there's no need to live your life based on the standards of others. Everyone says 'dream big,' but I don't think you have to live so fiercely like that all the time.",
+                    author: "V"
+                }, {
+                    quote: "What do you think are the chances of a totally controllable future arriving? There's a high chance that the future you dreaded never happens.",
+                    author: "SUGA"
+                }
+            ];
+
+            window.onload = init;
+            function init() {
+                generateQuote()
+            }
+
+            function generateQuote() {
+                let quoteSize = QUOTEBANK.length;
+                let randomIndex = Math.floor(Math.random() * quoteSize);
+                let randomQuoteData = QUOTEBANK[randomIndex];
+
+                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+
+                //will add the quote
+                let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+                twitterLink += quoteInApiFormat;
+                //added the author
+                let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+                twitterLink += " - " + authorInApiFormat;
+
+                document.getElementById("tweet-quote").href = twitterLink;
+               document.getElementById ("text").innerText = randomQuoteData.quote;
+               document.getElementById ("author").innerText = randomQuoteData.author;
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-8 offset-md-2">
+        <wrapper id="quote-box">
+            <div class="card">
+                <div class="card-header text-center">BTS Random Quote Machine</div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <div id="text"></div>
+                </h5>
+                  <p class="card-text">
+                    <div id="author"></div>
+                  </p>
+
+                  <button id="new-quote" onClick="generateQuote();" class="btn btn-success">New Quote</button>
+                  <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary">Tweet Quote</a>
+                </div>
+              </div>
+        </wrapper>
+        </div>
+        </div>
+     </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
